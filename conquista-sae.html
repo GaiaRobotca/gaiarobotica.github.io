@@ -67,9 +67,9 @@
   /* ===== CAROUSEL / ROLETA ===== */
   .carousel-wrap { position: relative; margin: 3rem 0; background: var(--surface); padding: 2rem; border-radius: 8px; border: 1px solid var(--border); }
   .carousel-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; text-align: center; margin-bottom: 1.5rem; }
-  .carousel-container { overflow: hidden; width: 100%; border-radius: 4px; position: relative; }
+  .carousel-container { overflow: hidden; width: 100%; border-radius: 4px; position: relative; background: #e0eaf5; }
   .carousel-track { display: flex; transition: transform 0.4s ease-in-out; }
-  .carousel-slide { min-width: 100%; height: 400px; object-fit: cover; background-color: var(--border); }
+  .carousel-slide { min-width: 100%; height: 450px; object-fit: contain; }
   
   /* Botões da Roleta */
   .carousel-btn { 
@@ -103,30 +103,9 @@
     .container-leitura { grid-template-columns: 1fr; }
     .sidebar-posts { margin-top: 4rem; position: static; }
     .footer-grid { grid-template-columns: 1fr; text-align: center; }
-    .carousel-slide { height: 280px; }
+    .carousel-slide { height: 300px; }
   }
 </style>
-
-<script>
-  function handleImageError(img) {
-    // Evita loop infinito se ambas as extensões falharem
-    if (img.dataset.retried) {
-      return;
-    }
-    
-    img.dataset.retried = "true";
-    let currentSrc = img.getAttribute('src');
-    
-    if (currentSrc.endsWith('.jpg')) {
-      img.src = currentSrc.replace('.jpg', '.JPG');
-    } else if (currentSrc.endsWith('.JPG')) {
-      img.src = currentSrc.replace('.JPG', '.jpg');
-    } else if (currentSrc.endsWith('.heic') || currentSrc.endsWith('.HEIC')) {
-      // Tenta forçar a busca pela versão JPG se o ficheiro ainda estiver como HEIC no HTML
-      img.src = currentSrc.replace(/\.heic$/i, '.jpg');
-    }
-  }
-</script>
 </head>
 <body>
 
@@ -157,7 +136,7 @@
     <article class="article-content-main">
       
       <div class="main-image">
-        <img src="Drone.jpg" alt="Drone GAIA Eletroquad na pista de decolagem" onerror="handleImageError(this)">
+        <img src="Drone.JPG" alt="Drone GAIA Eletroquad na pista de decolagem">
       </div>
       
       <div class="article-content">
@@ -170,7 +149,7 @@
         <h2>Os Dias de Competição</h2>
         <p>Durante o evento, a pressão era constante. A competição exigia não apenas que o drone voasse, mas que operasse com autonomia, navegasse por coordenadas, reconhecesse alvos no solo e realizasse o acionamento de mecanismos (como a nossa garra mecânica) no tempo exato. A estabilidade do sinal de telemetria e o ajuste fino do controle PID sob condições climáticas adversas foram os nossos maiores desafios em campo.</p>
 
-        <img src="Preparosparaacompeticao.jpg" class="inline-img" alt="Equipe preparando o drone e ajustando o código na bancada" onerror="handleImageError(this)">
+        <img src="Preparosparaacompeticao.JPG" class="inline-img" alt="Equipe preparando o drone e ajustando o código na bancada">
         <p style="text-align: center; font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-top: -1rem; margin-bottom: 2rem;">Ajuste fino de código e calibração de hardware momentos antes do voo oficial.</p>
 
         <div class="carousel-wrap">
@@ -178,10 +157,11 @@
           <div class="carousel-container">
             <button class="carousel-btn prev">&#10094;</button>
             <div class="carousel-track">
-              <img src="36c0bbb2-fe29-4cf1-8b6a-4308d20f6b08.jpg" class="carousel-slide" alt="Visita técnica à Embraer" onerror="handleImageError(this)">
-              <img src="IMG_7633.jpg" class="carousel-slide" alt="Inspeção técnica do Drone" onerror="handleImageError(this)">
-              <img src="Júlia e Wanessa.jpg" class="carousel-slide" alt="Membros do GAIA com o drone Eletroquad" onerror="handleImageError(this)">
-              <img src="IMG_3194.jpg" class="carousel-slide" alt="Palco e encerramento" onerror="handleImageError(this)">
+              <img src="J%C3%BAlia%20e%20Wanessa.jpg" class="carousel-slide" alt="Júlia e Wanessa">
+              <img src="IMG_7633.JPG" class="carousel-slide" alt="Inspeção técnica do Drone">
+              <img src="36c0bbb2-fe29-4cf1-8b6a-4308d20f6b08.jpg" class="carousel-slide" alt="Visita técnica à Embraer">
+              <img src="membrosdogaiacomodroneeletroquad.JPG" class="carousel-slide" alt="Equipe completa na Embraer">
+              <img src="IMG_3194.jpg" class="carousel-slide" alt="Palco e encerramento">
             </div>
             <button class="carousel-btn next">&#10095;</button>
           </div>
@@ -212,7 +192,7 @@
         <h2>O Impacto do Pódio</h2>
         <p>Essa vitória impulsiona o GAIA Robótica para um novo patamar dentro e fora da UFTM. Mostrou à comunidade acadêmica a capacidade da equipe de trabalhar com o estado da arte em sistemas de voo autônomo e abre portas para parcerias com indústrias do setor de inovação e agronegócio no Triângulo Mineiro.</p>
         
-        <img src="Equipe.jpg" class="inline-img" alt="Equipe GAIA Robótica reunida celebrando" onerror="handleImageError(this)">
+        <img src="Equipe.JPG" class="inline-img" alt="Equipe GAIA Robótica reunida celebrando">
         <p style="text-align: center; font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-top: -1rem;">A equipe reunida: o motor humano por trás do projeto autônomo.</p>
 
       </div>
@@ -284,18 +264,15 @@
     let currentIndex = 0;
 
     function updateCarousel() {
-      // Move a trilha baseada na largura (100% de cada slide) vezes o índice atual
       track.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 
     nextButton.addEventListener('click', () => {
-      // Volta para 0 se passar do limite
       currentIndex = (currentIndex + 1) % slides.length;
       updateCarousel();
     });
 
     prevButton.addEventListener('click', () => {
-      // Vai para a última foto se voltar antes do zero
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       updateCarousel();
     });
