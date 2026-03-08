@@ -1,34 +1,71 @@
-<article class="sec">
-    <div class="sec-tag">// inteligência artificial</div>
-    <h2>O que é, afinal, a IA?</h2>
-    <p class="lead">Esqueça os filmes de ficção científica. Na prática, a IA é uma ferramenta poderosa para resolver problemas complexos que a programação tradicional não consegue dar conta.</p>
-
-    <div class="content-body" style="line-height: 1.8; color: var(--text);">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O que é IA? — GAIA Robótica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Mantendo a identidade visual do GAIA que você já criou */
+        :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;line-height:1.6;}
         
-        <section style="margin-bottom: 3rem;">
-            <h3 style="color: var(--blue-dark); margin-bottom: 1rem;">1. Programação vs. Aprendizado</h3>
-            <p>Na <strong>programação comum</strong>, você dá ordens explícitas ao computador: <em>"Se o sensor de ultrassom detectar um objeto a menos de 10cm, pare os motores"</em>. É como uma receita de bolo rígida.</p>
-            <p style="margin-top: 1rem;">Na <strong>IA (Machine Learning)</strong>, nós não damos as regras. Nós damos os <strong>dados</strong>. O computador analisa milhares de exemplos e descobre sozinho quais são as regras para chegar no resultado esperado.</p>
-        </section>
-        <section style="margin-bottom: 3rem; background: var(--surface); padding: 2rem; border-left: 4px solid var(--green);">
-            <h3 style="color: var(--blue-dark); margin-bottom: 1rem;">Como ela "aprende"?</h3>
-            <p>Imagine que queremos que um drone identifique uma falha em uma turbina eólica. Em vez de tentarmos descrever matematicamente cada tipo de rachadura, mostramos ao modelo 5.000 fotos de turbinas boas e 5.000 fotos de turbinas com falhas.</p>
-            <p style="margin-top: 1rem;">O modelo cria uma função matemática complexa, algo como $y = f(x)$, onde $x$ são os pixels da imagem e $y$ é a probabilidade de haver um erro. Se o resultado for errado durante o treino, o algoritmo ajusta seus pesos internos para acertar na próxima vez.</p>
-        </section>
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
+        .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;display:flex;align-items:center;gap:0.6rem;}
+        .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
+        .nav-logo .g{color:var(--green);}
+        
+        .article-hero{background:linear-gradient(140deg,var(--blue-deep),var(--blue-dark));padding:8rem 3rem 4rem;color:white;text-align:center;}
+        .tag{font-family:'Space Mono',monospace;color:var(--green);text-transform:uppercase;letter-spacing:0.2em;font-size:0.8rem;}
+        h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;text-transform:uppercase;margin:1rem 0;}
 
-        <section style="margin-bottom: 3rem;">
-            <h3 style="color: var(--blue-dark); margin-bottom: 1rem;">2. IA na Robótica (O foco do GAIA)</h3>
-            <p>No nosso projeto de extensão, a IA não é apenas teórica. Ela é o "cérebro" que permite:</p>
-            <ul style="margin-left: 1.5rem; margin-top: 1rem;">
-                <li><strong>Visão Computacional:</strong> Identificar objetos e obstáculos em tempo real através de câmeras.</li>
-                <li><strong>Navegação Autônoma:</strong> Decidir a melhor rota em um ambiente desconhecido.</li>
-                <li><strong>Processamento de Sinais:</strong> Filtrar ruídos de sensores para que o robô tenha movimentos mais suaves.</li>
-            </ul>
-        </section>
+        .container{max-width:800px;margin:0 auto;padding:4rem 2rem;background:var(--white);margin-top:-2rem;border-radius:8px;box-shadow:0 20px 40px rgba(0,0,0,0.05);position:relative;z-index:10;}
+        
+        h2, h3{font-family:'Barlow Condensed',sans-serif;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 1rem;}
+        p{margin-bottom:1.5rem;font-size:1.1rem;color:var(--text);}
+        .highlight-box{background:var(--surface);border-left:4px solid var(--green);padding:1.5rem;margin:2rem 0;}
+        
+        footer{background:#040e22;padding:2.5rem 3rem;margin-top:4rem;color:white;text-align:center;}
+    </style>
+</head>
+<body>
 
-        <div style="background: var(--blue-deep); color: #fff; padding: 2rem; margin-top: 2rem;">
-            <h4 style="color: var(--green); margin-bottom: 0.5rem;">Resumo para não esquecer:</h4>
-            <p style="font-style: italic;">"IA não é mágica, é estatística com muita capacidade de processamento."</p>
-        </div>
+<nav>
+    <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
+</nav>
+
+<header class="article-hero">
+    <div class="tag">// Inteligência Artificial</div>
+    <h1>O que é Inteligência Artificial?</h1>
+    <p>Desmistificando o "cérebro" por trás das máquinas.</p>
+</header>
+
+<main class="container">
+    <p>Muitas pessoas acham que a IA é algo saído de filmes como <em>Exterminador do Futuro</em>, mas para nós, na engenharia, ela é uma ferramenta de otimização e reconhecimento de padrões.</p>
+
+    <h2>1. O Conceito Base</h2>
+    <p>Na programação tradicional, nós escrevemos regras: "Se isso acontecer, faça aquilo". Na IA, nós mostramos exemplos para o computador. É o que chamamos de <strong>Machine Learning</strong>.</p>
+    <div class="highlight-box">
+        <h3>A Matemática do Aprendizado</h3>
+        <p>Basicamente, o modelo tenta encontrar uma função matemática $y = f(x)$ que melhor represente os dados. Se estamos ensinando um drone a identificar uma árvore, $x$ são os pixels da imagem e $y$ é o rótulo "Árvore".</p>
     </div>
-</article>
+    <h2>2. Por que usar no GAIA?</h2>
+    <p>No contexto do nosso projeto de extensão, a IA entra em cena quando a lógica matemática simples não é suficiente. Por exemplo:</p>
+    <ul>
+        <li><strong>Visão para Drones:</strong> Para que o drone identifique onde pousar autonomamente.</li>
+        <li><strong>Navegação:</strong> Para desviar de obstáculos em ambientes desconhecidos.</li>
+    </ul>
+
+    <p style="margin-top:3rem;">
+        <a href="aprenda.html" style="color:var(--blue); font-weight:bold; text-decoration:none;">← Voltar para a lista de artigos</a>
+    </p>
+</main>
+
+<footer>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.3rem;">GAIA <span style="color:var(--green)">ROBÓTICA</span></div>
+    <p style="font-size:0.8rem; opacity:0.5; margin-top:0.5rem;">UFTM · Uberaba, MG</p>
+</footer>
+
+</body>
+</html>
