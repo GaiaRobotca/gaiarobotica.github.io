@@ -347,18 +347,20 @@ function fmt(n) {
 // ─── Busca contagem (GET — só lê, não incrementa) ────────────────────────────
 async function getCount(id) {
   try {
-    const r = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${id}`);
+    // Usando o Abacus, o substituto direto do antigo CountAPI
+    const r = await fetch(`https://abacus.jasoncameron.dev/get/${NAMESPACE}/${id}`);
     const data = await r.json();
-    return data.count || 0; // Mudou de data.value para data.count
+    return data.value || 0; 
   } catch { return 0; }
 }
 
 // ─── Incrementa contagem ao clicar (HIT — lê e adiciona +1) ─────────────────
 async function hitCount(id) {
   try {
-    const r = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${id}/up`);
+    // Rota de /hit para computar o clique
+    const r = await fetch(`https://abacus.jasoncameron.dev/hit/${NAMESPACE}/${id}`);
     const data = await r.json();
-    return data.count || 0; // Mudou de data.value para data.count
+    return data.value || 0; 
   } catch { return 0; }
 }
   
