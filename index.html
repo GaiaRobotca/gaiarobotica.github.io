@@ -4,8 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GAIA Robótica — UFTM</title>
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-gaia.png">
-<link rel="apple-touch-icon" href="favicon-gaia.png">
+<link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
+<script>
+  (function() {
+    const icons = ['favicon-verde.png', 'favicon-azul.png', 'favicon-branco.png'];
+    const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+    document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
+  })();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
