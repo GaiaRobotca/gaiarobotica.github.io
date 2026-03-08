@@ -53,9 +53,29 @@
   .post-recente-thumb { width: 80px; height: 60px; border-radius: 4px; object-fit: cover; border: 1px solid var(--border); }
   .post-recente-titulo { font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--blue); line-height: 1.3; }
 
-  /* Conteúdo Principal */
-  .main-image img { width: 100%; height: 450px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; border: 2px solid var(--border); background-color: var(--surface); }
-  .inline-img { width: 100%; height: auto; border-radius: 6px; margin: 1.5rem 0; border: 1px solid var(--border); background-color: var(--surface); }
+  /* Conteúdo Principal e Imagens Proporcionais */
+  .main-image img { 
+    width: 100%; 
+    height: 450px; /* Mantém a altura fixa para não crescer infinitamente */
+    object-fit: cover; 
+    object-position: center;
+    border-radius: 8px; 
+    margin-bottom: 3rem; 
+    border: 2px solid var(--border); 
+    background-color: var(--surface); 
+  }
+  
+  .inline-img { 
+    width: 100%; 
+    max-height: 450px; /* A MAGIA ACONTECE AQUI: Impede a imagem de ficar gigante */
+    object-fit: cover; /* Corta a imagem como um banner bonito */
+    object-position: center 20%; /* Foca na parte de cima/centro (onde estão as caras) */
+    border-radius: 8px; 
+    margin: 1.5rem 0; 
+    border: 1px solid var(--border); 
+    background-color: var(--surface); 
+    display: block;
+  }
   
   .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
   .article-content h3{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 0.75rem;}
@@ -64,21 +84,35 @@
   .article-content li{margin-bottom: 0.5rem; line-height: 1.6; color: var(--text);}
   blockquote { border-left: 4px solid var(--green); padding: 1.5rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.2rem; color: var(--blue-dark); background: var(--surface); }
 
-  /* ===== CAROUSEL / ROLETA ===== */
+  /* ===== CAROUSEL / ROLETA (MODO CINEMA) ===== */
   .carousel-wrap { position: relative; margin: 3rem 0; background: var(--surface); padding: 2rem; border-radius: 8px; border: 1px solid var(--border); }
   .carousel-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; text-align: center; margin-bottom: 1.5rem; }
-  .carousel-container { overflow: hidden; width: 100%; border-radius: 4px; position: relative; background: #e0eaf5; }
+  
+  .carousel-container { 
+    overflow: hidden; 
+    width: 100%; 
+    border-radius: 8px; 
+    position: relative; 
+    background: #0a192f; /* Fundo azul escuro cinemático */
+    border: 2px solid var(--blue-deep);
+  }
+  
   .carousel-track { display: flex; transition: transform 0.4s ease-in-out; }
-  .carousel-slide { min-width: 100%; height: 450px; object-fit: contain; }
+  
+  .carousel-slide { 
+    min-width: 100%; 
+    height: 500px; 
+    object-fit: contain; /* Impede a imagem de ser cortada, mostrando-a inteira no fundo escuro */
+  }
   
   .carousel-btn { 
     position: absolute; top: 50%; transform: translateY(-50%); 
-    background: rgba(13, 79, 160, 0.85); color: white; border: none; 
+    background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255,255,255,0.3); 
     width: 45px; height: 45px; border-radius: 50%; cursor: pointer; 
     font-size: 1.2rem; display: flex; align-items: center; justify-content: center; 
-    z-index: 2; transition: background 0.2s, transform 0.2s; backdrop-filter: blur(4px);
+    z-index: 2; transition: background 0.2s, transform 0.2s; backdrop-filter: blur(8px);
   }
-  .carousel-btn:hover { background: var(--blue-dark); transform: translateY(-50%) scale(1.1); }
+  .carousel-btn:hover { background: var(--blue-light); transform: translateY(-50%) scale(1.1); border-color: transparent;}
   .carousel-btn.prev { left: 15px; }
   .carousel-btn.next { right: 15px; }
 
@@ -102,7 +136,7 @@
     .container-leitura { grid-template-columns: 1fr; }
     .sidebar-posts { margin-top: 4rem; position: static; }
     .footer-grid { grid-template-columns: 1fr; text-align: center; }
-    .carousel-slide { height: 300px; }
+    .carousel-slide { height: 350px; }
   }
 </style>
 
@@ -161,7 +195,7 @@
         <h2>Os Dias de Competição</h2>
         <p>Durante o evento, a pressão era constante. A competição exigia não apenas que o drone voasse, mas que operasse com autonomia, navegasse por coordenadas, reconhecesse alvos no solo e realizasse o acionamento de mecanismos (como a nossa garra mecânica) no tempo exato. A estabilidade do sinal de telemetria e o ajuste fino do controle PID sob condições climáticas adversas foram os nossos maiores desafios em campo.</p>
 
-        <img src="Preparosparaacompeticao.JPG" class="inline-img" alt="Equipe preparando o drone e ajustando o código na bancada" onerror="handleImageError(this)">
+        <img src="Preparosparaacompeticao.jpg" class="inline-img" alt="Equipe preparando o drone e ajustando o código na bancada" onerror="handleImageError(this)">
         <p style="text-align: center; font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-top: -1rem; margin-bottom: 2rem;">Ajuste fino de código e calibração de hardware momentos antes do voo oficial.</p>
 
         <div class="carousel-wrap">
@@ -172,13 +206,13 @@
               <img src="IMG_7491.jpg" class="carousel-slide" alt="Equipe celebrando o 3º lugar" onerror="handleImageError(this)">
               <img src="IMG_7527.jpg" class="carousel-slide" alt="Equipe com a van" onerror="handleImageError(this)">
               <img src="IMG_7522.jpg" class="carousel-slide" alt="Meninas com o cheque" onerror="handleImageError(this)">
-              <img src="Júlia%20e%20Wanessa.jpg" class="carousel-slide" alt="Júlia e Wanessa" onerror="handleImageError(this)">
+              <img src="J%C3%BAlia%20e%20Wanessa.jpg" class="carousel-slide" alt="Júlia e Wanessa" onerror="handleImageError(this)">
               <img src="IMG_7431.jpg" class="carousel-slide" alt="Meninas com o drone" onerror="handleImageError(this)">
-              <img src="IMG_7633.JPG" class="carousel-slide" alt="Inspeção técnica do Drone" onerror="handleImageError(this)">
-              <img src="IMG_7627.JPG" class="carousel-slide" alt="Trabalhando no drone" onerror="handleImageError(this)">
-              <img src="IMG_7628.JPG" class="carousel-slide" alt="Equipe concentrada" onerror="handleImageError(this)">
-              <img src="IMG_7630.JPG" class="carousel-slide" alt="Conversa com equipe" onerror="handleImageError(this)">
-              <img src="IMG_7631.JPG" class="carousel-slide" alt="Alinhamento da equipe" onerror="handleImageError(this)">
+              <img src="IMG_7633.jpg" class="carousel-slide" alt="Inspeção técnica do Drone" onerror="handleImageError(this)">
+              <img src="IMG_7627.jpg" class="carousel-slide" alt="Trabalhando no drone" onerror="handleImageError(this)">
+              <img src="IMG_7628.jpg" class="carousel-slide" alt="Equipe concentrada" onerror="handleImageError(this)">
+              <img src="IMG_7630.jpg" class="carousel-slide" alt="Conversa com equipe" onerror="handleImageError(this)">
+              <img src="IMG_7631.jpg" class="carousel-slide" alt="Alinhamento da equipe" onerror="handleImageError(this)">
               <img src="36c0bbb2-fe29-4cf1-8b6a-4308d20f6b08.jpg" class="carousel-slide" alt="Visita técnica à Embraer" onerror="handleImageError(this)">
               <img src="IMG_3194.jpg" class="carousel-slide" alt="Palco e encerramento" onerror="handleImageError(this)">
             </div>
@@ -211,7 +245,7 @@
         <h2>O Impacto do Pódio</h2>
         <p>Essa vitória impulsiona o GAIA Robótica para um novo patamar dentro e fora da UFTM. Mostrou à comunidade acadêmica a capacidade da equipe de trabalhar com o estado da arte em sistemas de voo autônomo e abre portas para parcerias com indústrias do setor de inovação e agronegócio no Triângulo Mineiro.</p>
         
-        <img src="Equipe.JPG" class="inline-img" alt="Equipe GAIA Robótica reunida celebrando" onerror="handleImageError(this)">
+        <img src="Equipe.jpg" class="inline-img" alt="Equipe GAIA Robótica reunida celebrando" onerror="handleImageError(this)">
         <p style="text-align: center; font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-top: -1rem;">A equipe reunida: o motor humano por trás do projeto autônomo.</p>
 
       </div>
