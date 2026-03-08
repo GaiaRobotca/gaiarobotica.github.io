@@ -281,7 +281,8 @@
 
   /* ===== CONTATO ===== */
   .contato-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
-  .ps-banner { background: var(--green); color: #fff; padding: 1.5rem; border-radius: 8px; display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; text-decoration: none; }
+  .ps-banner { background: var(--green); color: #fff; padding: 1.5rem; border-radius: 8px; display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; text-decoration: none; transition: transform 0.2s; }
+  .ps-banner:hover { transform: translateY(-3px); }
   .ps-banner-icon { font-size: 2rem; }
   .ps-banner-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem; }
   .ps-banner-link { font-size: 0.8rem; color: rgba(255,255,255,0.8); }
@@ -657,11 +658,6 @@
 
   <h3 class="members-section-title">Membros Atuais</h3>
   <div class="members-grid">
-    <div class="member-simple-card" style="border-color: var(--blue-light);">
-      <img src="heron.jpg" class="ms-avatar" alt="Pedro Henrique" onerror="this.src='https://ui-avatars.com/api/?name=Pedro+Henrique&background=1a6fd4&color=fff'">
-      <div class="ms-name">Pedro Henrique</div>
-    </div>
-
     <div class="member-simple-card">
       <img src="membro-camila.jpg" class="ms-avatar" alt="Camila Francisca" onerror="this.src='https://ui-avatars.com/api/?name=Camila+Francisca&background=1a6fd4&color=fff'">
       <div class="ms-name">Camila Francisca</div>
@@ -725,6 +721,11 @@
     <div class="member-simple-card">
       <img src="membro-paula.jpg" class="ms-avatar" alt="Paula Luísa" onerror="this.src='https://ui-avatars.com/api/?name=Paula+Luisa&background=1a6fd4&color=fff'">
       <div class="ms-name">Paula Luísa</div>
+    </div>
+
+    <div class="member-simple-card" style="border-color: var(--blue-light);">
+      <img src="heron.jpg" class="ms-avatar" alt="Pedro Henrique" onerror="this.src='https://ui-avatars.com/api/?name=Pedro+Henrique&background=1a6fd4&color=fff'">
+      <div class="ms-name">Pedro Henrique</div>
     </div>
 
     <div class="member-simple-card">
