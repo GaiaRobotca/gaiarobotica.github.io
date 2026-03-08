@@ -56,23 +56,42 @@
   /* Conteúdo Principal */
   .main-image img { width: 100%; height: 450px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; border: 2px solid var(--border); }
   .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
+  .article-content h3{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 0.75rem;}
   .article-content p{font-size:1.05rem;line-height:1.82;color:var(--text);margin-bottom:1.3rem;}
+  .article-content ul{margin-left: 1.5rem; margin-bottom: 1.5rem;}
+  .article-content li{margin-bottom: 0.5rem; line-height: 1.6; color: var(--text);}
   blockquote { border-left: 4px solid var(--green); padding: 1.5rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.2rem; color: var(--blue-dark); background: var(--surface); }
+
+  /* Galeria de Fotos */
+  .photo-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2.5rem 0; }
+  .photo-gallery img { width: 100%; height: 250px; object-fit: cover; border-radius: 4px; border: 2px solid var(--border); transition: transform 0.2s; }
+  .photo-gallery img:hover { transform: scale(1.02); }
+  .photo-full { grid-column: span 2; height: 400px !important; }
+  .img-caption { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; text-align: center; text-transform: uppercase; }
+
+  /* Destaque Técnico (Relatório) */
+  .tech-highlight { background: var(--surface); border: 2px dashed var(--blue-light); padding: 2rem; border-radius: 8px; margin: 3rem 0; }
+  .tech-highlight h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 1rem; }
+  .tech-tag { display: inline-block; background: var(--blue-dark); color: #fff; font-family: 'Space Mono', monospace; font-size: 0.7rem; padding: 0.3rem 0.8rem; margin-right: 0.5rem; margin-bottom: 0.5rem; border-radius: 4px; text-transform: uppercase; }
 
   /* Rodapé e CTA */
   .back-cta { background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep)); padding: 4rem 2rem; margin-top: 5rem; border-radius: 16px; text-align: center; color: #fff; }
-  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
+  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); transition: transform 0.2s; }
+  .btn-p:hover { transform: translateY(-3px); }
   
   footer { background: #020817; padding: 6rem 3rem 3rem; color: #fff; margin-top: 4rem; }
   .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
   .footer-col h4 { color: var(--green); margin-bottom: 1.5rem; text-transform: uppercase; }
   .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
 
   @media(max-width: 1000px) {
     .container-leitura { grid-template-columns: 1fr; }
     .sidebar-posts { margin-top: 4rem; position: static; }
     .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .photo-gallery { grid-template-columns: 1fr; }
+    .photo-full { grid-column: span 1; height: 250px !important; }
   }
 </style>
 </head>
@@ -96,7 +115,7 @@
       <span class="meta-pill" style="color:white; border-color:rgba(255,255,255,0.3);">NOVEMBRO DE 2025</span>
     </div>
     <h1>SAE BRASIL ELETROQUAD:<br>O PÓDIO DA ENGENHARIA</h1>
-    <p class="subtitle">Como a equipe GAIA Eletroquad desenvolveu do zero um drone quadrotor autônomo e conquistou o Brasil em menos de um ano de projeto.</p>
+    <p class="subtitle">Como a equipe GAIA Eletroquad desenvolveu um drone quadrotor autônomo e conquistou o 3° lugar do Brasil enfrentando desafios reais de integração de hardware e software.</p>
   </div>
 </div>
 
@@ -107,17 +126,53 @@
         <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200" alt="Drone GAIA Eletroquad">
       </div>
       <div class="article-content">
-        <p>A conquista do terceiro lugar na competição **SAE Brasil Eletroquad** representa um marco histórico para a robótica na UFTM. Enfrentando equipes de todo o país, o GAIA provou que a união entre pesquisa acadêmica e engenharia prática é a chave para o sucesso.</p>
+        <p>A conquista do terceiro lugar na competição **SAE Brasil Eletroquad** (promovida em conjunto com a Eletrobras) é um marco histórico para a robótica na UFTM. Enfrentando equipes experientes de todo o país, o GAIA provou que a união entre pesquisa acadêmica meticulosa e engenharia prática é a chave para a inovação aeronáutica.</p>
         
         <blockquote>
-          "Este prêmio é o reflexo de centenas de horas de testes, códigos debugados e um drone que nasceu de uma folha em branco para se tornar um dos melhores do país."
+          "Este troféu é o reflexo de noites no laboratório, códigos debugados exaustivamente e um drone que nasceu de uma estrutura base para se tornar um dos sistemas aéreos autônomos mais eficientes do país."
         </blockquote>
 
-        <h2>O Desafio Técnico</h2>
-        <p>Desenvolvemos um drone quadrotor totalmente autônomo. O projeto exigiu a integração de **Inteligência Artificial**, sistemas de GPS e algoritmos de controle PID avançados para garantir estabilidade durante as missões de navegação.</p>
+        <h2>Os Dias de Competição</h2>
+        <p>Durante o evento, a pressão era constante. A competição exigia não apenas que o drone voasse, mas que operasse com autonomia, navegasse por coordenadas, reconhecesse alvos no solo e realizasse o acionamento de mecanismos (como a nossa garra mecânica) no tempo exato. A estabilidade do sinal de telemetria e o ajuste fino do controle PID sob condições climáticas adversas foram os nossos maiores desafios em campo.</p>
 
-        <h2>Impacto Acadêmico</h2>
-        <p>Além do troféu, a competição proporcionou aos membros da equipe uma experiência real de mercado, lidando com prazos rígidos, regulamentos técnicos da SAE e a pressão de operar um veículo aéreo autônomo em ambiente de competição.</p>
+        <div class="photo-gallery">
+          <div>
+            <img src="https://placehold.co/600x400/0d2a50/c8dff5?text=Foto+da+Equipe+no+Box" alt="Equipe GAIA nos boxes">
+            <p class="img-caption">Trabalho ágil nos boxes antes das missões.</p>
+          </div>
+          <div>
+            <img src="https://placehold.co/600x400/0d2a50/c8dff5?text=Ajuste+de+Hardware" alt="Ajuste do drone">
+            <p class="img-caption">Calibração final de sensores e baterias.</p>
+          </div>
+          <div class="photo-full">
+            <img src="https://placehold.co/1200x600/0d2a50/c8dff5?text=Voo+Autônomo" alt="Drone em voo">
+            <p class="img-caption">O quadrotor GAIA executando a missão de voo autônomo.</p>
+          </div>
+        </div>
+
+        <div class="tech-highlight">
+          <h4>Raio-X do Projeto Técnico</h4>
+          <p>O relatório técnico que apresentamos aos juízes detalha a arquitetura complexa do nosso sistema. Aqui estão os principais componentes do drone premiado:</p>
+          
+          <ul>
+            <li><strong>Estrutura (Frame):</strong> Utilizamos o resistente chassis <em>Holybro S500 V2</em>, que ofereceu a rigidez necessária para as dinâmicas de voo.</li>
+            <li><strong>Controladora de Voo:</strong> O "cerebelo" do drone foi a placa <em>Pixhawk 4</em> rodando o avançado ecossistema de código aberto <em>PX4 Autopilot</em>.</li>
+            <li><strong>Telemetria Dupla:</strong> Para garantir que nunca perdêssemos o controle, configuramos um rádio telemetria SiK operando em 915 MHz, além de um módulo ESP8266 ESP-01 para telemetria paralela via rede Wi-Fi local, integrando tudo com o software QGroundControl.</li>
+            <li><strong>Visão e Processamento Embarcado:</strong> Para as missões de visão computacional, algoritmos de reconhecimento de imagem rodavam num computador embarcado (utilizando a Jetson Nano com a arquitetura ROS 2) que se comunicava via MAVROS.</li>
+            <li><strong>Atuação:</strong> Uma garra customizada controlada por um servomotor integrado diretamente à GPIO do computador embarcado.</li>
+          </ul>
+
+          <div style="margin-top: 1rem;">
+            <span class="tech-tag">Holybro S500</span>
+            <span class="tech-tag">Pixhawk 4</span>
+            <span class="tech-tag">PX4</span>
+            <span class="tech-tag">MAVROS</span>
+            <span class="tech-tag">ROS 2</span>
+          </div>
+        </div>
+
+        <h2>O Impacto do Pódio</h2>
+        <p>Essa vitória impulsiona o GAIA Robótica para um novo patamar dentro e fora da UFTM. Mostrou à comunidade acadêmica a capacidade da equipe de trabalhar com o estado da arte em sistemas de voo autônomo e abre portas para parcerias com indústrias do setor de inovação e agronegócio no Triângulo Mineiro.</p>
       </div>
     </article>
 
@@ -136,9 +191,9 @@
 
       <h3 style="margin-top: 3rem;">Posts Técnicos</h3>
       
-      <a href="artigo-ia.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Como a IA move nossos robôs</span>
+      <a href="artigo-drones.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Física dos Drones: Tração e Controle</span>
       </a>
 
       <a href="artigo-pid.html" class="post-recente-item">
@@ -149,8 +204,8 @@
   </div>
 
   <div class="back-cta">
-    <h3>Sua empresa pode fazer parte do próximo pódio</h3>
-    <p>Apoie a engenharia do Triângulo Mineiro e ajude a GAIA a alcançar o 1° lugar.</p>
+    <h3>Sua empresa no próximo pódio nacional</h3>
+    <p>Associe a sua marca a uma equipe universitária focada em alta performance e tecnologia de ponta. Descubra os benefícios de patrocinar o GAIA.</p>
     <a href="patrocine.html" class="btn-p">Seja Patrocinador →</a>
   </div>
 </div>
