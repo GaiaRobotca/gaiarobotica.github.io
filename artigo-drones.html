@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como um drone voa? — GAIA Robótica</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Mesmos estilos para manter a consistência */
+  :root{--bg:#ffffff;--surface:#f8f9fa;--blue:#1a6fd4;--blue-dark:#0d4fa0;--green:#5cb82e;--text:#2c3e50;--muted:#7f8c8d;--border:#e1e8ed;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);padding:0 3rem;height:70px;display:flex;justify-content:space-between;align-items:center;}
+  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:var(--blue-dark);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
+  .nav-logo span{color:var(--green);}
+  .article-header{max-width:900px;margin:4rem auto 2rem;padding:0 2rem;}
+  .post-cat{color:var(--blue);font-family:'Space Mono',monospace;font-size:0.8rem;text-transform:uppercase;font-weight:700;}
+  h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem, 5vw, 3.5rem);font-weight:900;line-height:1.1;margin:1rem 0;color:#1a1a1a;text-transform:uppercase;}
+  .post-meta{display:flex;align-items:center;gap:1rem;color:var(--muted);font-size:0.9rem;}
+  .author-img{width:40px;height:40px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:bold;color:var(--blue);border:1px solid var(--border);}
+  .main-image{max-width:1100px;margin:2rem auto;padding:0 2rem;}
+  .main-image img{width:100%;height:500px;object-fit:cover;border-radius:4px;}
+  .post-content{max-width:800px;margin:0 auto;padding:2rem;}
+  h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;margin:2.5rem 0 1rem;color:var(--blue-dark);border-bottom: 2px solid var(--surface); padding-bottom: 0.5rem; text-transform:uppercase;}
+  p{margin-bottom:1.5rem;font-size:1.15rem;}
+  blockquote{border-left:5px solid var(--blue);padding:1.5rem;margin:2.5rem 0;font-style:italic;font-size:1.3rem;color:var(--text);background: var(--surface);}
+  .math-box{background:var(--surface);padding:1.5rem;border-radius:8px;margin:2rem 0;text-align:center;border: 1px dashed var(--blue); font-size: 1.2rem;}
+  .comments-section{max-width:800px;margin:5rem auto;padding:3rem 2rem;border-top:1px solid var(--border);}
+  .comment-form{display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem;}
+  .comment-form input, .comment-form textarea{width:100%;padding:1rem;border:1px solid var(--border);border-radius:4px;font-family:inherit;font-size:1rem; background: var(--surface);}
+  .btn-comment{align-self: flex-start; background:var(--blue-dark);color:#fff;padding:0.8rem 2rem;border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;text-transform:uppercase;}
+  .comment-item{margin-bottom:2rem; padding:1.5rem; background: var(--surface); border-radius: 4px; border-left: 3px solid var(--border);}
+  .comment-user{font-weight: 800; color: var(--blue-dark); font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;}
+  footer{background:#040e22;color:#fff;padding:4rem 2rem;text-align:center;}
+</style>
+</head>
+<body>
+
+<nav><a href="aprenda.html" class="nav-logo">GAIA <span>ROBÓTICA</span></a></nav>
+
+<article>
+  <header class="article-header">
+    <div class="post-cat">Aerodinâmica & SAE</div>
+    <h1>Como um drone consegue voar?</h1>
+    <div class="post-meta">
+      <div class="author-img">J</div>
+      <div>Por <b>Júlia</b> • 8 de Março, 2026 • 7 min de leitura</div>
+    </div>
+  </header>
+
+  <div class="main-image">
+    <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200" alt="Drone Quadrotor">
+  </div>
+
+  <div class="post-content">
+    <p>O voo de um quadrotor é um exercício de equilíbrio dinâmico. Para o projeto <strong>Eletroquad</strong> da SAE, precisamos entender como as forças de tração e torque interagem para manter a estabilidade.</p>
+
+    <h2>1. Equilíbrio de Forças</h2>
+    <p>Para pairar (hover), a tração gerada pelos motores deve anular o peso do drone. Se a tração for superior, o drone acelera verticalmente.</p>
+    
+    <div class="math-box">
+      $$T_{total} = m \cdot g$$
+    </div>
+
+    
+
+    <h2>2. Controle de Atitude</h2>
+    <p>Diferente de aviões, drones não possuem lemes. Eles controlam o movimento (Pitch, Roll e Yaw) variando a velocidade relativa entre os motores CW (horário) e CCW (anti-horário).</p>
+
+    <h2>3. Dimensionamento de Bateria</h2>
+    <p>Em competições como a SAE, o cálculo da corrente de descarga é vital para evitar falhas em pleno voo. Usamos a capacidade nominal ($Q$) e o C-rating:</p>
+
+    <div class="math-box">
+      $$I_{max} = C \times Q$$
+    </div>
+
+    
+  </div>
+</article>
+
+<section class="comments-section">
+  <h3>Discussão</h3>
+  <form class="comment-form" id="form-drone">
+    <input type="text" placeholder="Seu Nome" required id="nome-drone">
+    <textarea rows="4" placeholder="Dúvidas sobre o projeto SAE?" required id="texto-drone"></textarea>
+    <button type="submit" class="btn-comment">Publicar</button>
+  </form>
+  <div id="lista-drone">
+    <p style="color: var(--muted); font-style: italic;" id="msg-drone">Seja o primeiro a comentar!</p>
+  </div>
+</section>
+
+<footer><p>GAIA Robótica · UFTM · Uberaba, MG</p></footer>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+  const f2=document.getElementById('form-drone'),l2=document.getElementById('lista-drone'),m2=document.getElementById('msg-drone');
+  f2.addEventListener('submit',(e)=>{e.preventDefault();const n=document.getElementById('nome-drone').value,t=document.getElementById('texto-drone').value;
+  if(m2)m2.remove();const d=document.createElement('div');d.className='comment-item';
+  d.innerHTML=`<div class="comment-user">${n}</div><p>${t}</p>`;l2.prepend(d);f2.reset();});
+</script>
+</body>
+</html>
