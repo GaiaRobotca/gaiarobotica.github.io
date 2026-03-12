@@ -187,6 +187,24 @@
   .member-simple-card:hover { border-color:var(--green); background:var(--surface); transform: translateX(5px); }
   .ms-name { font-size:0.92rem; font-weight:600; color:var(--blue-dark); line-height:1.2; }
 
+  /* ===== ALUMNI ===== */
+  .alumni-section-title { font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:900; color:var(--blue-dark); text-transform:uppercase; margin: 4rem 0 1rem; display: flex; align-items: center; gap: 1rem; }
+  .alumni-section-title::after { content: ''; flex-grow: 1; height: 1px; background: var(--border); }
+  .alumni-desc { font-size:1rem; color:var(--muted); margin-bottom:2rem; line-height: 1.7; max-width: 800px; }
+  .alumni-desc strong { color: var(--blue-dark); }
+
+  .alumni-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-bottom:3rem; }
+  .alumni-card { background:transparent; border:1px dashed var(--muted); padding:1rem; border-radius: 12px; display:flex; align-items:center; gap:1.2rem; transition:all 0.3s ease; text-decoration: none; color: inherit; }
+  .alumni-card:hover { border-color:var(--blue-light); background:var(--surface); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(26,111,212,0.05); }
+  
+  .alumni-avatar { width: 50px; height: 50px; min-width: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); padding: 2px; filter: grayscale(100%); opacity: 0.8; transition: all 0.3s ease; }
+  .alumni-card:hover .alumni-avatar { filter: grayscale(0%); opacity: 1; border-color: var(--blue-light); }
+  
+  .alumni-info { display: flex; flex-direction: column; }
+  .alumni-name { font-size:0.95rem; font-weight:700; color:var(--muted); line-height:1.2; transition: color 0.2s; }
+  .alumni-card:hover .alumni-name { color: var(--blue-dark); }
+  .alumni-role { font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; margin-top: 0.3rem; }
+
   .hackagis-team { margin-top:2rem; background:var(--blue-dark); padding:2rem 2.5rem; display:flex; align-items:center; gap:2rem; clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%); }
   .hk-badge { font-family:'Barlow Condensed',sans-serif; font-size:3.5rem; font-weight:900; color:var(--green); line-height:1; }
   .hk-info strong { display:block; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.05em; }
@@ -256,7 +274,7 @@
     .about-grid,.missao-grid,.leadership,.contato-wrapper{grid-template-columns:1fr;gap:2rem;}
     .docentes{grid-template-columns:1fr;}
     .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid{grid-template-columns:1fr 1fr;}
-    .members-grid { grid-template-columns: 1fr 1fr; }
+    .members-grid, .alumni-grid { grid-template-columns: 1fr 1fr; }
     .hero{padding:6rem 1.5rem 5rem;}
     .sec{padding:4rem 1.5rem;}
     .kit-banner{grid-template-columns:1fr;}
@@ -265,7 +283,7 @@
     .blog-post{grid-template-columns:1fr;gap:0.3rem;}
   }
   @media(max-width:600px){
-    .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.mc-grid,.docentes,.members-grid{grid-template-columns:1fr;}
+    .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.mc-grid,.docentes,.members-grid,.alumni-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -662,11 +680,6 @@
     </div>
 
     <div class="member-simple-card">
-      <img src="paula.jpg" class="ms-avatar" alt="Paula Luísa" onerror="this.src='https://ui-avatars.com/api/?name=Paula+Luisa&background=1a6fd4&color=fff'">
-      <div class="ms-name">Paula Luísa</div>
-    </div>
-
-    <div class="member-simple-card" style="border-color: var(--blue-light);">
       <img src="heron.jpg" class="ms-avatar" alt="Pedro Henrique" onerror="this.src='https://ui-avatars.com/api/?name=Pedro+Henrique&background=1a6fd4&color=fff'">
       <div class="ms-name">Pedro Henrique</div>
     </div>
@@ -676,6 +689,20 @@
       <div class="ms-name">Stefanny Ariel</div>
     </div>
   </div>
+
+  <h3 class="alumni-section-title">Nossa História · Alumni</h3>
+  <p class="alumni-desc">A equipe GAIA Robótica expressa a sua profunda gratidão a todos os membros que dedicaram seu tempo, conhecimento e paixão ao projeto. Cada linha de código, cada peça construída e cada escola visitada carrega um pouco de vocês. <strong>Muito obrigado por ajudarem a construir a nossa história e o nosso legado!</strong></p>
+  
+  <div class="alumni-grid">
+    <a href="#" target="_blank" class="alumni-card" title="Ver Perfil">
+      <img src="paula.jpg" class="alumni-avatar" alt="Paula Luísa" onerror="this.src='https://ui-avatars.com/api/?name=Paula+Luisa&background=e4f0ff&color=5a7a9a'">
+      <div class="alumni-info">
+        <div class="alumni-name">Paula Luísa</div>
+        <div class="alumni-role">Ex-membro</div>
+      </div>
+    </a>
+    
+    </div>
 
   <div class="hackagis-team">
     <div class="hk-badge">2°</div>
@@ -767,7 +794,7 @@
     
     <div class="msg-box">
       <h3 class="msg-title">Envie uma Mensagem</h3>
-      <p class="msg-p">Utilize o nosso novo formulário direto para entrar em contacto com a equipa do GAIA Robótica.</p>
+      <p class="msg-p">Utilize o nosso novo formulário direto para entrar em contato com a equipe do GAIA Robótica.</p>
       <a href="contato.html" class="btn-p" style="text-decoration:none;">Página de Contato →</a>
     </div>
     
